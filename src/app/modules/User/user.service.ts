@@ -1,8 +1,20 @@
 import { PrismaClient } from "@prisma/client";
 import { hashedPassword } from "../../helpers/hashPassword";
+import { IUserRegistration } from "./user.interface";
+import ApiError from "../../errors/AppError";
 const prisma = new PrismaClient();
 
-const registerUser = async (data: any) => {
+const registerUser = async (data: IUserRegistration) => {
+  const isUserExist = await prisma.user.findUnique({
+    where: {
+      email: data.email,
+    },
+  });
+
+  if (isUserExist) {
+    throw new ApiError(400, "User already exist");
+  }
+
   const encryptedPassword = await hashedPassword(data.password);
   const userData = { ...data, password: encryptedPassword };
 
