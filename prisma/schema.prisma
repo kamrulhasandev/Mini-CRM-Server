@@ -16,6 +16,7 @@ model User {
   updatedAt DateTime  @updatedAt
   Clients   Clients[]
   Project   Project[]
+  Log       Log[]
 
   @@map("users")
 }
@@ -34,6 +35,7 @@ model Clients {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   Project   Project[]
+  Log       Log[]
 
   @@map("clients")
 }
@@ -53,12 +55,41 @@ model Project {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Log       Log[]
 
   @@map("projects")
+}
+
+model Log {
+  id    String          @id @default(uuid())
+  type  InteractionType
+  date  DateTime
+  notes String
+
+  userId String
+  User   User   @relation(fields: [userId], references: [id])
+
+  clientId String
+  Client   Clients @relation(fields: [clientId], references: [id])
+
+  projectId String?
+  Project   Project? @relation(fields: [projectId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("logs")
 }
 
 enum ProjectStatus {
   IN_PROGRESS
   COMPLETED
   CANCELLED
+}
+
+enum InteractionType {
+  CALL
+  MEETING
+  EMAIL
+  OTHERS
 }
