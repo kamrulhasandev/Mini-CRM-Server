@@ -12,11 +12,12 @@ model User {
   email    String @unique
   password String
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   Clients   Clients[]
   Project   Project[]
   Log       Log[]
+  Reminder  Reminder[]
 
   @@map("users")
 }
@@ -32,10 +33,11 @@ model Clients {
   userId String
   User   User   @relation(fields: [userId], references: [id])
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   Project   Project[]
   Log       Log[]
+  Reminder  Reminder[]
 
   @@map("clients")
 }
@@ -53,9 +55,10 @@ model Project {
   userId String
   User   User   @relation(fields: [userId], references: [id])
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   Log       Log[]
+  Reminder  Reminder[]
 
   @@map("projects")
 }
@@ -79,6 +82,27 @@ model Log {
   updatedAt DateTime @updatedAt
 
   @@map("logs")
+}
+
+model Reminder {
+  id      String   @id @default(uuid())
+  title   String
+  dueDate DateTime
+  message String
+
+  userId String
+  User   User   @relation(fields: [userId], references: [id])
+
+  clientId String
+  Client   Clients @relation(fields: [clientId], references: [id])
+
+  projectId String?
+  Project   Project? @relation(fields: [projectId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reminders")
 }
 
 enum ProjectStatus {

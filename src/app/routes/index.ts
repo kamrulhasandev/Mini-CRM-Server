@@ -4,6 +4,7 @@ import { AuthRoutes } from "../modules/Auth/auth.routes";
 import { ClientRoutes } from "../modules/Client/client.routes";
 import { ProjectRoutes } from "../modules/Project/project.routes";
 import { LogsRoutes } from "../modules/Logs/logs.routes";
+import { RemindersRoutes } from "../modules/Reminder/reminder.routes";
 
 const router = express.Router();
 
@@ -27,6 +28,10 @@ const moduleRoutes = [
   {
     path: "/logs",
     route: LogsRoutes,
+  },
+  {
+    path: "/reminders",
+    route: RemindersRoutes,
   },
 ];
 
