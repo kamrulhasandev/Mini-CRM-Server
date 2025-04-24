@@ -13,4 +13,17 @@ router.post(
   ClientController.createClient
 );
 
+router.patch(
+  "/:clientId",
+  auth,
+  validateRequest(ClientValidation.updateClientSchema),
+  ClientController.updateClient
+);
+
+router.delete("/:clientId", auth, ClientController.deleteClient);
+
+router.get("/all-clients", auth, ClientController.getAllClients);
+
+router.get("/:clientId", auth, ClientController.getClient);
+
 export const ClientRoutes = router;

@@ -12,4 +12,14 @@ const createClientSchema = z.object({
   }),
 });
 
-export const ClientValidation = { createClientSchema };
+const updateClientSchema = z.object({
+  body: z.object({
+    name: z.string().optional(),
+    email: z.string().email("Invalid email address").optional(),
+    phone: z.string().optional(),
+    company: z.string().optional(),
+    notes: z.string().optional(),
+  }),
+});
+
+export const ClientValidation = { createClientSchema, updateClientSchema };
