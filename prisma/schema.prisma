@@ -15,6 +15,7 @@ model User {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   Clients   Clients[]
+  Project   Project[]
 
   @@map("users")
 }
@@ -30,8 +31,34 @@ model Clients {
   userId String
   User   User   @relation(fields: [userId], references: [id])
 
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Project   Project[]
+
+  @@map("clients")
+}
+
+model Project {
+  id       String        @id @default(uuid())
+  title    String
+  budget   Float
+  deadline DateTime
+  status   ProjectStatus
+
+  clientId String
+  Client   Clients @relation(fields: [clientId], references: [id])
+
+  userId String
+  User   User   @relation(fields: [userId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("clients")
+  @@map("projects")
+}
+
+enum ProjectStatus {
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
 }
