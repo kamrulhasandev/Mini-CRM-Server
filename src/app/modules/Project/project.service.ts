@@ -106,8 +106,21 @@ const getAllProjects = async (userId: any) => {
   }
   const result = await prisma.project.findMany({
     where: { userId: userId },
-    include: {
-      Client: true,
+    select: {
+      id: true,
+      title: true,
+      budget: true,
+      deadline: true,
+      status: true,
+      Client: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+          company: true,
+        },
+      },
     },
   });
   return result;
