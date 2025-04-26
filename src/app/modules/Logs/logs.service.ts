@@ -52,9 +52,19 @@ const getAllLogs = async (userId: any) => {
 
   const result = await prisma.log.findMany({
     where: { userId: userId },
-    include: {
-      Client: true,
-      Project: true,
+    select: {
+      id: true,
+      type: true,
+      date: true,
+      notes: true,
+      Client: {
+        select: {
+          name: true,
+          email: true,
+          phone: true,
+          company: true,
+        },
+      },
     },
   });
   return result;
