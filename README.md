@@ -6,9 +6,23 @@ Built with **TypeScript**, **React**, **Express/NestJS**, and **PostgreSQL**, fo
 
 ---
 
+## Live Site
+
+🔗 [Visit the Mini-CRM](https://mini-crm-server.vercel.app)
+
+---
+
+## Test Login Information
+
+- **Email:** `kamrul@gmail.com`
+- **Password:** `123456`
+
+---
+
 ## Tech Stack
 
 **Frontend:**
+
 - React.js (Vite)
 - TypeScript
 - TailwindCSS
@@ -16,6 +30,7 @@ Built with **TypeScript**, **React**, **Express/NestJS**, and **PostgreSQL**, fo
 - Redux
 
 **Backend:**
+
 - Node.js with Express
 - TypeScript
 - PostgreSQL (Database)
@@ -24,6 +39,7 @@ Built with **TypeScript**, **React**, **Express/NestJS**, and **PostgreSQL**, fo
 - Zod (Request validation)
 
 **Dev Tools:**
+
 - ESLint + Prettier (Code formatting)
 - Docker (Optional for containerization)
 - Postman (API testing)
@@ -33,22 +49,24 @@ Built with **TypeScript**, **React**, **Express/NestJS**, and **PostgreSQL**, fo
 ## Installation
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/kamrulhasandev/mini-crm-server
-    cd Pharmacy-Server
-    ```
+
+   ```bash
+   git clone https://github.com/kamrulhasandev/mini-crm-server
+   cd mini-crm-server
+   ```
 
 2. Install the dependencies:
-    ```bash
-    npm install
-    ```
+
+   ```bash
+   npm install
+   ```
 
 3. Set up the environment variables (see [Environment Variables](#environment-variables)).
 
 4. Start the server:
-    ```bash
-    npm start
-    ```
+   ```bash
+   npm start
+   ```
 
 ---
 
